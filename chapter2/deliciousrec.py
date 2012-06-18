@@ -10,5 +10,6 @@ def initializeUserDict(tag,count=5):
       user=p2['user']
       user_dict[user]={}
   return user_dict
-
-
+def test():
+    a=34
+    return a
