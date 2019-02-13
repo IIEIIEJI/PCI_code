@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>МИОО</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <base href=".">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/select.css" rel="stylesheet">
+    <link href="./css/fullcalendar.css" rel="stylesheet">
+    <link href="./css/ui-grid.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+<div ui-view="topbar">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container-fluid container-fluid-left-padding-none">
+            <div class="navbar-header">
+                <ul class="nav navbar navbar-nav navbar-left">
+                    <li class="dropdown">
+
+                    </li>
+                    <li>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a id="appsListBtn" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                        </a>
+                        <a class="navbar-brand" href="javascript:void(0)">Кабинет кафедры</a>
+                        <!-- applicationListMenu -->
+                        <div class="application-modal dropdown-menu">
+                            <div class="application-container">
+                                <ul class="application-list">
+                                    <li class="application-list-item">
+                                        <a href="http://new.dpomos.ru/"
+                                        >
+                                            <img src="./img/office-briefcase.png">
+                                            <span class="title">Кабинет учебного управления</span>
+                                        </a>
+                                    </li>
+                                    <li class="application-list-item">
+                                        <a href="http://new.dpomos.ru/"
+                                        >
+                                            <img src="./img/cubes-in-stack-with-shadow.png">
+                                            <span class="title">Кабинет кафедры</span>
+                                        </a>
+                                    </li>
+                                    <li class="application-list-item">
+                                        <a>
+                                            <img src="./img/flask-glass-container-with-liquid-inside.png">
+                                            <span class="title">Кабинет эксперта</span>
+                                        </a>
+                                    </li>
+                                    <li class="application-list-item">
+                                        <a href="http://new.dpomos.ru/"
+                                        >
+                                            <img src="./img/book.png">
+                                            <span class="title">Кабинет слушателя</span>
+                                        </a>
+                                    </li>
+                                    <li class="application-list-item">
+                                        <a href="http://new.dpomos.ru/"
+                                        >
+                                            <img src="./img/settings-gears.png">
+                                            <span class="title">Кабинет администратора</span>
+                                        </a>
+                                    </li>
+                                    <li class="application-list-item">
+                                        <a href="http://new.dpomos.ru/"
+                                        >
+                                            <img src="./img/binoculars.png">
+                                            <span class="title">Кабинет руководителя</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /applicationListMenu -->
+                    </li>
+                </ul>
+            </div>
+            <!-- actions button -->
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav leftButtonsBlock">
+
+                    <li><a href="javascript:void(0)" class="btn btn-large"><span
+                            class="glyphicon glyphicon-save"></span>Скачать</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>test@test.com</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <span class="glyphicon glyphicon-user icon-size"></span>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>test@test.com</strong>
+                                            </p>
+                                            <p class="text-left small">test@test.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li><a href="javascript:void(0)">Sign Out <span
+                                    class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
+            <!-- /actions buttons -->
+        </div>
+
+    </nav>
+    <!-- /Navigation --></div>
+<!-- Main -->
+<div class="container-fluid main">
+    <div class="row">
+        <!-- sidebar -->
+
+        <div class="col-sm-3 col-md-2 sidebar" ng-show="vm.menuIsOpen">
+            <div class="toggle-leftmenu-panel unfolded">
+                <div class="toggle-leftmenu-button">
+                    <a href="javascript:void(0)" ng-click="vm.toggleMenu()">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </div>
+            </div>
+            <!-- ngRepeat: group in vm.menuGroups -->
+            <div class="nav-sidebar-list ng-scope" ng-repeat="group in vm.menuGroups">
+                <div class="nav-sidebar-title">
+                    <div class="toggle-sidebar-list-panel unfolded">
+                        <div class="toggle-leftmenu-button">
+                            <a href="javascript:void(0)" ng-click="vm.toggleGroup(group.Name)">
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-class="group.IsOpen ? ' glyphicon-chevron-down' : ' glyphicon-chevron-right'"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="ng-binding">Программы</span>
+                </div>
+                <div class="list-group" ng-show="group.IsOpen">
+
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope active"
+                       data-id="1" ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Все
+                    </a>
+                    <a href="javascript:void(0)" class="list-group-item" data-toggle="modal"
+                       data-target="#modal-window-form">
+                        Модальное окно с формой
+                    </a>
+                    <a href="javascript:void(0)" class="list-group-item" data-toggle="modal"
+                       data-target="#modal-window-grid">
+                        Модальное окно с таблицей
+                    </a>
+                    <a href="javascript:void(0)" class="list-group-item" data-toggle="modal"
+                       data-target="#modal-window-collapsing">
+                        Модальное окно со списками
+                    </a>
+                    <a href="javascript:void(0)" class="list-group-item" data-toggle="modal"
+                       data-target="#modal-calendar">
+                        Модальное окно с календарем
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="2"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Новые
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="3"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Активные
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="4"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        В архиве
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="5"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Истекает срок действия
+                    </a>
+                </div>
+            </div><!-- end ngRepeat: group in vm.menuGroups -->
+            <div class="nav-sidebar-list ng-scope" ng-repeat="group in vm.menuGroups">
+                <div class="nav-sidebar-title">
+                    <div class="toggle-sidebar-list-panel unfolded">
+                        <div class="toggle-leftmenu-button">
+                            <a href="javascript:void(0)" ng-click="vm.toggleGroup(group.Name)">
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-class="group.IsOpen ? ' glyphicon-chevron-down' : ' glyphicon-chevron-right'"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="ng-binding">Курсы</span>
+                </div>
+                <div class="list-group" ng-show="group.IsOpen">
+                    <!-- ngRepeat: menuItem in group.MenuItems --><a href="javascript:void(0)" class="list-group-item"
+                                                                     data-id="11">
+                    Все
+                </a><!-- end ngRepeat: menuItem in group.MenuItems --><a href="javascript:void(0)"
+                                                                         class="list-group-item" data-id="12">
+                    Активные
+                </a><!-- end ngRepeat: menuItem in group.MenuItems --><a href="javascript:void(0)"
+                                                                         class="list-group-item ng-binding"
+                                                                         data-id="13">
+                    Новые
+                </a><!-- end ngRepeat: menuItem in group.MenuItems -->
+                </div>
+            </div><!-- end ngRepeat: group in vm.menuGroups -->
+            <div class="nav-sidebar-list">
+                <div class="nav-sidebar-title">
+                    <div class="toggle-sidebar-list-panel unfolded">
+                        <div class="toggle-leftmenu-button">
+                            <a href="javascript:void(0)">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="ng-binding">Заявки</span>
+                </div>
+                <div class="list-group" ng-show="group.IsOpen">
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="21"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Все
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="22"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Текущие
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="23"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        В архиве
+                    </a>
+                </div>
+            </div><!-- end ngRepeat: group in vm.menuGroups -->
+            <div class="nav-sidebar-list ng-scope" ng-repeat="group in vm.menuGroups">
+                <div class="nav-sidebar-title">
+                    <div class="toggle-sidebar-list-panel unfolded">
+                        <div class="toggle-leftmenu-button">
+                            <a href="javascript:void(0)" ng-click="vm.toggleGroup(group.Name)">
+                                <span class="glyphicon glyphicon-chevron-down"
+                                      ng-class="group.IsOpen ? ' glyphicon-chevron-down' : ' glyphicon-chevron-right'"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="ng-binding">Управление обучением</span>
+                </div>
+                <div class="list-group" ng-show="group.IsOpen">
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="31"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Управление группами
+                    </a>
+                    <a href="javascript:void(0)"
+                       class="list-group-item ng-binding ng-scope"
+                       data-id="32"
+                       ng-repeat="menuItem in group.MenuItems"
+                       ng-click="vm.navigationListItemClickHandler(menuItem)">
+                        Управление расписанием
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-10" style="height: 646px;">
+
+            <button type="submit" class="btn btn-primary submit-button">Экспорт в excel</button>
+            <button type="submit" class="btn btn-primary submit-button">Приказ об утверждении перечня программ</button>
+            <div class="container-fluid">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /content -->
+</div>
+</div>
+<!-- /Main --></div>
+
+<div class="modal fade" id="modal-window-form">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Это модальное окно</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Фамилия">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Телефон">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Текст сообщения" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-success">Отправить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-window-grid">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Это модальное окно с таблицей</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered" >
+                    <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Family</td>
+                        <td>Age</td>
+                        <td>Address</td>
+                        <td>Phone number</td>
+                        <td>E-mail</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Andrey</td>
+                        <td>Kot</td>
+                        <td>22</td>
+                        <td>Жилой фонд Сыктывкара: старый фонд и новостройки, новые жилые комплексы и микрорайоны. Планы расположения на карте и фотографии домов.</td>
+                        <td>89042244669</td>
+                        <td>kot.ezhva@gmail.com</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-window-collapsing">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Это модальное окно со списками</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Список #1
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <ul class="list-group">
+                                <li class="list-group-item">Элемент списка</li>
+                                <li class="list-group-item">Элемент списка</li>
+                                <li class="list-group-item">Элемент списка 3</li>
+                                <li class="list-group-item">Элемент списка 5</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                    Список #2
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <ul class="list-group">
+                                <li class="list-group-item">Элемент списка 11</li>
+                                <li class="list-group-item">Элемент списка 21</li>
+                                <li class="list-group-item">Элемент списка 13</li>
+                                <li class="list-group-item">Элемент списка 15</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-calendar">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Это модальное окно с календарем</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#time-tab" aria-controls="home" role="tab" data-toggle="tab">Аудитории/Время</a></li>
+                    <li role="presentation"><a href="#data-tab" aria-controls="profile" role="tab" data-toggle="tab">Дата/Время</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="time-tab">
+                        <table class="table table-bordered" >
+                            <thead>
+                            <tr>
+                                <td>Time / Cabinet</td>
+                                <td>120</td>
+                                <td>125</td>
+                                <td>126</td>
+                                <td>127</td>
+                                <td>128</td>
+                                <td>130</td>
+                                <td>205</td>
+                                <td>302</td>
+                                <td>304</td>
+                                <td>314</td>
+                                <td>324</td>
+                                <td>311</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>13:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>13:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>15:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>16:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>17:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>18:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="data-tab">
+                        <table class="table table-bordered" >
+                            <thead>
+                            <tr>
+                                <td>Time / Date</td>
+                                <td>16.07</td>
+                                <td>17.07</td>
+                                <td>18.07</td>
+                                <td>19.07</td>
+                                <td>20.07</td>
+                                <td>21.07</td>
+                                <td>22.07</td>
+                                <td>23.07</td>
+                                <td>24.07</td>
+                                <td>25.07</td>
+                                <td>26.07</td>
+                                <td>27.07</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>13:00</td>
+                                <td></td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="danger"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>13:00</td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="danger"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>15:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="danger"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>16:00</td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="danger"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>17:00</td>
+                                <td></td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td class="danger"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>18:00</td>
+                                <td class="danger"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="danger"></td>
+                                <td></td>
+                                <td></td>
+                                <td class="success"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./js/jquery.js"></script>
+
+
+<script src="./js/api-check.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script src="./js/moment.min.js"></script>
+<script src="./js/bootstrap-datetimepicker.min.js"></script>
+
+
+<script src="./js/lodash.js"></script>
+
+
+<script src="./js/fullcalendar.js"></script>
+
+
+<script src="./js/setVisibleHeight.js"></script>
+
+
+</body>
+</html>
